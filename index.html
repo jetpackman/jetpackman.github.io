@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Design by http://www.bluewebtemplates.com
+Released for free under a Creative Commons Attribution 3.0 License
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Yipei Guan: CS488</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/arial.js"></script>
+<script type="text/javascript" src="js/cuf_run.js"></script>
+<!-- CuFon ends -->
+
+
+  <!-- Add jQuery library -->
+  <script type="text/javascript" src="./lib/jquery-1.10.1.min.js"></script>
+
+  <!-- Add mousewheel plugin (this is optional) -->
+  <script type="text/javascript" src="./lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+  <!-- Add fancyBox main JS and CSS files -->
+  <script type="text/javascript" src="./source/jquery.fancybox.js?v=2.1.5"></script>
+  <link rel="stylesheet" type="text/css" href="./source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+  <!-- Add Button helper (this is optional) -->
+  <link rel="stylesheet" type="text/css" href="./source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+  <script type="text/javascript" src="./source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+  <!-- Add Thumbnail helper (this is optional) -->
+  <link rel="stylesheet" type="text/css" href="./source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+  <script type="text/javascript" src="./source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+  <!-- Add Media helper (this is optional) -->
+  <script type="text/javascript" src="./source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      /*
+       *  Simple image gallery. Uses default settings
+       */
+
+      $('.fancybox').fancybox();
+
+      /*
+       *  Different effects
+       */
+
+      // Change title type, overlay closing speed
+      $(".fancybox-effects-a").fancybox({
+        helpers: {
+          title : {
+            type : 'outside'
+          },
+          overlay : {
+            speedOut : 0
+          }
+        }
+      });
+
+      // Disable opening and closing animations, change title type
+      $(".fancybox-effects-b").fancybox({
+        openEffect  : 'none',
+        closeEffect : 'none',
+
+        helpers : {
+          title : {
+            type : 'over'
+          }
+        }
+      });
+
+      // Set custom style, close if clicked, change title type and overlay color
+      $(".fancybox-effects-c").fancybox({
+        wrapCSS    : 'fancybox-custom',
+        closeClick : true,
+
+        openEffect : 'none',
+
+        helpers : {
+          title : {
+            type : 'inside'
+          },
+          overlay : {
+            css : {
+              'background' : 'rgba(238,238,238,0.85)'
+            }
+          }
+        }
+      });
+
+      // Remove padding, set opening and closing animations, close if clicked and disable overlay
+      $(".fancybox-effects-d").fancybox({
+        padding: 0,
+
+        openEffect : 'elastic',
+        openSpeed  : 150,
+
+        closeEffect : 'elastic',
+        closeSpeed  : 150,
+
+        closeClick : true,
+
+        helpers : {
+          overlay : null
+        }
+      });
+
+      /*
+       *  Button helper. Disable animations, hide close button, change title type and content
+       */
+
+      $('.fancybox-buttons').fancybox({
+        openEffect  : 'none',
+        closeEffect : 'none',
+
+        prevEffect : 'none',
+        nextEffect : 'none',
+
+        closeBtn  : false,
+
+        helpers : {
+          title : {
+            type : 'inside'
+          },
+          buttons : {}
+        },
+
+        afterLoad : function() {
+          this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+        }
+      });
+
+
+      /*
+       *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+       */
+
+      $('.fancybox-thumbs').fancybox({
+        prevEffect : 'none',
+        nextEffect : 'none',
+
+        closeBtn  : false,
+        arrows    : false,
+        nextClick : true,
+
+        helpers : {
+          thumbs : {
+            width  : 50,
+            height : 50
+          }
+        }
+      });
+
+      /*
+       *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+      */
+      $('.fancybox-media')
+        .attr('rel', 'media-gallery')
+        .fancybox({
+          openEffect : 'none',
+          closeEffect : 'none',
+          prevEffect : 'none',
+          nextEffect : 'none',
+
+          arrows : false,
+          helpers : {
+            media : {},
+            buttons : {}
+          }
+        });
+
+      /*
+       *  Open manually
+       */
+
+      $("#fancybox-manual-a").click(function() {
+        $.fancybox.open('1_b.jpg');
+      });
+
+      $("#fancybox-manual-b").click(function() {
+        $.fancybox.open({
+          href : 'iframe.html',
+          type : 'iframe',
+          padding : 5
+        });
+      });
+
+      $("#fancybox-manual-c").click(function() {
+        $.fancybox.open([
+          {
+            href : '1_b.jpg',
+            title : 'My title'
+          }, {
+            href : '2_b.jpg',
+            title : '2nd title'
+          }, {
+            href : '3_b.jpg'
+          }
+        ], {
+          helpers : {
+            thumbs : {
+              width: 75,
+              height: 50
+            }
+          }
+        });
+      });
+
+
+    });
+  </script>
+  <style type="text/css">
+    .fancybox-custom .fancybox-skin {
+      box-shadow: 0 0 50px #222;
+    }
+
+    body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div class="main">
+
+  <div class="header">
+    <div class="header_resize">
+      <div class="logo"><h1><a href="index.html" class="nobg">CS488: Extended Ray Tracer</a></h1></div>
+
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar"> 
+        <h2>CS488 A5: Extended Ray Tracer Objectives:</h2>
+        <h2>1. Extra primitives</h2>
+        <h3>Here are cylinders and cones.</h3>
+
+        <p>
+          <a class="fancybox" href="./ray/newShapes.png" data-fancybox-group="gallery" title="Cylinders and cones"><img src="./raysmall/newShapes.png" alt="" /></a>
+        </p>
+        <h2>2. Reflections</h2>
+        <h3>This is the infamous nonhier.lua rendered with reflections.</h3>
+
+        <p>
+          <a class="fancybox" href="./ray/reflection.png" title="Nonhier with reflections"><img src="./raysmall/reflection.png" alt="" /></a>
+        </p>
+
+        <h2>3. Refraction</h2>
+        <h3>This is the nonhier.lua rendered with a refractive sphere to demonstrate refraction.</h3>
+
+        <p>
+          <a class="fancybox" href="./ray/refraction.png" title="Nonhier with refractions"><img src="./raysmall/refraction.png" alt="" /></a>
+        </p>
+
+        <h2>4. Constructive Solid Geometry</h2>
+        <h3>These are shapes rendered with constructive solid geometry.  They can be done with cylinders, cones and spheres</h3>
+
+        <p>
+          <a class="fancybox" href="./ray/csg.png" title="CSG"><img src="./raysmall/csg.png" alt="" /></a>
+        </p>
+
+        <h2>5. Texture mapping</h2>
+        <h3>The primitives are mapped with a brick and checkerboard texture.  This can be done with cylinders, cones, spheres and cubes</h3>
+
+        <p>
+          <a class="fancybox" href="./ray/texture.png" title="Texture Mapping"><img src="./raysmall/texture.png" alt="" /></a>
+        </p>
+
+        <h2>6. Bump mapping</h2>
+        <h3>These primitives were texture mapped with a moon texture, and then bump mapped accordingly to show the difference.</h3>
+
+        <p>
+        <a class="fancybox" href="./ray/sampleWithoutBump.png" data-fancybox-group="bump"  title="Without Bump Mapping"><img src="./raysmall/sampleWithoutBump.png" alt="" /></a>
+        <a class="fancybox" href="./ray/sampleWithBump.png"  data-fancybox-group="bump" title="With Bump Mapping"><img src="./raysmall/sampleWithBump.png" alt="" /></a>
+        </p>
+
+
+        <h2>7. Depth of Field</h2>
+        <h3>This is to show depth of field.  </h3>
+
+        <p>
+          <a class="fancybox" href="./ray/dopNear.png" data-fancybox-group="near"  title="Near"><img src="./raysmall/dopNear.png" alt="" /></a>
+          <a class="fancybox" href="./ray/dopFar.png"  data-fancybox-group="near" title="Far"><img src="./raysmall/dopFar.png" alt="" /></a>
+          <a class="fancybox" href="./ray/finalDOP.png"  data-fancybox-group="near" title="Snow Scene with DOP"><img src="./raysmall/finalDOP.png" alt="" /></a>
+        </p>
+
+        <h2>8. Adaptive Anti-aliasing</h2>
+        <h3>This is to show off adaptive anti aliasing, which only requires super sampling at specific points.</h3>
+        <p>
+          <a class="fancybox" href="./ray/nonhier.png"  data-fancybox-group="aa" title="Original Super Sample"><img src="./raysmall/nonhier.png" alt="" /></a>
+        </p>
+        <h3> Attempt 1</h3>
+        <p>
+          <a class="fancybox" href="./ray/nonhier-with-red.png"  data-fancybox-group="aa" title="Attempt 1 with Red Outline"><img src="./raysmall/nonhier-with-red.png" alt="" /></a>
+          <a class="fancybox" href="./ray/nonhier-aa.png"  data-fancybox-group="aa" title="Attempt 1 Real Image"><img src="./raysmall/nonhier-aa.png" alt="" /></a>
+        </p>
+        <h3> Attempt 2</h3>
+        <p>
+          <a class="fancybox" href="./ray/nonhier-aa2-red.png"  data-fancybox-group="aa" title="Attempt 2 with Red Outline"><img src="./raysmall/nonhier-aa2-red.png" alt="" /></a>
+          <a class="fancybox" href="./ray/nonhier-aa2.png"  data-fancybox-group="aa" title="Attempt 2 Real Image"><img src="./raysmall/nonhier-aa2.png" alt="" /></a>
+        </p>
+        <h3>Speed Performance Analysis</h3>
+        <p>
+          <a class="fancybox" href="./ray/a1speed.png"  data-fancybox-group="aa" title="Attempt 1 Speed Comparison"><img src="./raysmall/a1speed.png" alt="" /></a>
+          <a class="fancybox" href="./ray/a2speed.png"  data-fancybox-group="aa" title="Attempt 2 Speed Comparison"><img src="./raysmall/a2speed.png" alt="" /></a>
+        </p>
+        <h2>9. Animation</h2>
+        <h3> Simple animation system to render multiple images</h3>
+          <iframe width="512" height="512" src="http://www.youtube.com/embed/ZjMr2fqx704" frameborder="0" allowfullscreen></iframe>
+        <h2>10. Final Scene</h2>
+        <h3> Final Scene render.</h3>
+        <p>
+          <a class="fancybox" href="./ray/final.png"  data-fancybox-group="" title="Final Scene"><img src="./raysmall/final.png" alt="" /></a>
+        </p>
+<iframe width="768" height="768" src="http://www.youtube.com/embed/_Fv_edJngNY" frameborder="0" allowfullscreen></iframe>
+      </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+
+ 
+  
+  
+</div>
+</body>
+</html>
